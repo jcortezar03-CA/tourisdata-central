@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard 3</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="logo">TourisData Central</div>
+            <a href="{{ url_for('menu') }}">Inicio</a>
+            <a href="{{ url_for('dashboard1') }}">Dashboard 1</a>
+            <a href="{{ url_for('dashboard2') }}">Dashboard 2</a>
+            <a href="{{ url_for('dashboard3') }}" class="active">Dashboard 3</a>
+            <a href="{{ url_for('logout') }}" class="logout">Cerrar Sesión</a>
+        </div>
+        <div class="content">
+            <div class="topbar">
+                <h1>Dashboard 3</h1>
+                <span>Reporte de Power BI</span>
+            </div>
+            <iframe title="Powerbi_Informe"
+                src="https://app.powerbi.com/view?r=eyJrIjoiNWJkZDE1ZTUtNDQzNy00N2RmLWE2OGUtYThlOWE0ZDFlZDBmIiwidCI6IjJlNmQ2MjViLTdmZGMtNGQ1MS1hYWEyLTgzN2Q1OTdjODBiYSIsImMiOjR9&pageName=7014adb371737aec39a5"
+                class="dashboard-frame"
+                frameborder="0"
+                allowFullScreen="true">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

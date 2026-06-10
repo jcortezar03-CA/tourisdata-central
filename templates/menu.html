@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TourisData Central</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        * { font-family: 'Poppins', sans-serif; }
+
+        .hero {
+            background: linear-gradient(135deg, #0d2137 0%, #0a3d2e 100%);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🌍';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 120px;
+            opacity: 0.15;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(233,69,96,0.2);
+            border: 1px solid rgba(233,69,96,0.4);
+            color: #e94560;
+            font-size: 11px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero h2 span {
+            color: #e94560;
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .hero-stat {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 24px;
+        }
+
+        .hero-stat .num {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e94560;
+        }
+
+        .hero-stat .lbl {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dash-card {
+            background: #16213e;
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 3px;
+            background: #e94560;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .dash-card:hover::after { transform: scaleX(1); }
+
+        .dash-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: rgba(233,69,96,0.3);
+        }
+
+        .dash-card .card-icon {
+            font-size: 42px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .dash-card .card-num {
+            font-size: 11px;
+            color: #e94560;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .dash-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .dash-card p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+        }
+
+        .dash-card .arrow {
+            position: absolute;
+            top: 24px; right: 24px;
+            font-size: 18px;
+            opacity: 0.3;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .dash-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="logo">TourisData Central</div>
+            <a href="{{ url_for('menu') }}" class="active">🏠 Inicio</a>
+            <a href="{{ url_for('dashboard1') }}">📊 Dashboard 1</a>
+            <a href="{{ url_for('dashboard2') }}">📈 Dashboard 2</a>
+            <a href="{{ url_for('dashboard3') }}">📉 Dashboard 3</a>
+            <a href="{{ url_for('logout') }}" class="logout">🚪 Cerrar Sesión</a>
+        </div>
+        <div class="content">
+
+            <!-- HERO -->
+            <div class="hero">
+                <span class="hero-tag">✈️ Plataforma Turística</span>
+                <h2>Bienvenido, <span>{{ usuario }}</span></h2>
+                <p>Explora los datos del sector turístico con dashboards interactivos. Toma decisiones basadas en información real y actualizada.</p>
+            </div>
+
+            <!-- DASHBOARDS -->
+            <p class="section-title">Dashboards disponibles</p>
+            <div class="dashboard-cards">
+                <a href="{{ url_for('dashboard1') }}" class="dash-card">
+                    <span class="arrow">→</span>
+                    <span class="card-icon">📊</span>
+                    <p class="card-num">Dashboard 01</p>
+                    <h3>Reporte 1</h3>
+                    <p>Visualiza los indicadores principales del análisis turístico.</p>
+                </a>
+                <a href="{{ url_for('dashboard2') }}" class="dash-card">
+                    <span class="arrow">→</span>
+                    <span class="card-icon">📈</span>
+                    <p class="card-num">Dashboard 02</p>
+                    <h3>Reporte 2</h3>
+                    <p>Análisis de tendencias y comportamiento del turismo.</p>
+                </a>
+                <a href="{{ url_for('dashboard3') }}" class="dash-card">
+                    <span class="arrow">→</span>
+                    <span class="card-icon">📉</span>
+                    <p class="card-num">Dashboard 03</p>
+                    <h3>Reporte 3</h3>
+                    <p>Comparativas y métricas del sector por región.</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
