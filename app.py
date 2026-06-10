@@ -53,6 +53,12 @@ def dashboard3():
         return redirect(url_for('login'))
     return render_template('dashboard3.html')
 
+@app.route('/dashboard4')
+def dashboard4():
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
+    return render_template('dashboard4.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
