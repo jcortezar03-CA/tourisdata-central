@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
 ''')
 
 cursor.execute("DELETE FROM Usuarios")
-cursor.execute("INSERT INTO Usuarios (usuario, contrasena) VALUES (?, ?)", ('tourisadmin', 'TuriSafe2026!'))
+cursor.execute("INSERT INTO Usuarios (usuario, contrasena) VALUES (?, ?)", ('tourisadmin', 'TuriSafe2026'))
 
 conn.commit()
 conn.close()
